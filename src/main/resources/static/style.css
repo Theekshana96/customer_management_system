@@ -1,0 +1,18 @@
+body {
+    margin: 0;
+    font-family: "Lato", sans-serif;
+}
+
+div.content {
+    min-height: 100vh;
+    padding: 20px;
+    background-color: #e5ffff;
+    text-align: center;
+}
+
+.home{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+

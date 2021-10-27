@@ -1,0 +1,45 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Packages</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}" />
+</head>
+<body style="background-color: #e5ffff">
+<div class="row py-5 px-5">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="card border-success mb-3">
+            <div class="card-body">
+                <h1 class="text-center">Edit Packages</h1>
+                <form action="#" th:action="@{/packages/edit}" th:object="${p}" th:method="put">
+                    <div class="form-outline mb-4">
+                        <input type="text" id="packageId" class="form-control" th:field="*{id}" readonly="readonly"/>
+                        <label class="form-label" for="packageId">Package ID</label>
+                    </div>
+                    <div class="form-outline mb-4">
+                        <input type="text" id="packageName" class="form-control"  th:field="*{packageName}" required/>
+                        <label class="form-label" for="packageName">Package Name</label>
+                    </div>
+                    <div class="form-outline mb-4">
+                        <textarea class="form-control" id="desc" rows="4"  th:field="*{packageDesc}" required></textarea>
+                        <label class="form-label" for="desc">Package Details</label>
+                    </div>
+                    <div class="form-outline mb-4">
+                        <input type="number" id="packageFee" class="form-control"  th:field="*{packageFee}" required/>
+                        <label class="form-label" for="packageFee">Package Fee</label>
+                    </div>
+                    <div class="d-flex flex-row-reverse">
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js"></script>
+</body>
+</html>

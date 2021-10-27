@@ -1,0 +1,67 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Activations</title>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}" />
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-info">
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <img th:src="@{/assets/images/logo1.png}" width="40px" height="40px">
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/customers">Customers</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/packages">Packages</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/activations">Activations</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="content">
+    <h1>Activations</h1>
+    <div class="d-flex flex-row-reverse px-4 py-2">
+        <a href="/activations/add-form" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Add</a>
+    </div>
+    <table class="table table-bordered align-middle">
+        <thead>
+        <tr>
+            <th class="fw-bold">Activation ID</th>
+            <th class="fw-bold">Customer Name</th>
+            <th class="fw-bold">Package</th>
+            <th class="fw-bold">Package Fee</th>
+            <th class="fw-bold">Package Status</th>
+            <th class="fw-bold">Edit</th>
+            <th class="fw-bold">Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="activation : ${listActivations}">
+            <td th:text="${activation.id}"></td>
+            <td th:text="${activation.getCustomer().getName()}"></td>
+            <td th:text="${activation.getPack().getPackageName()}"></td>
+            <td th:text="${activation.getPack().getPackageFee()}"></td>
+            <td><span th:class="${activation.isActive()} ? 'badge bg-primary': 'badge bg-danger'" th:text="${activation.isActive()} ? 'Active': 'Deactivated'"></span></td>
+            <td><a th:href="@{'/activations/edit-form/'+${activation.id}}" class="btn btn-sm btn-primary">Edit</a></td>
+            <form th:action="@{'/activations/delete/'+${activation.id}}" th:method="delete" >
+                <td><button type="submit" class="btn btn-sm btn-danger">Delete</button></td>
+            </form>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
